@@ -1,0 +1,32 @@
+name: Deploy IP API
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Deploy to Cloudflare Workers
+      run: npm run deploy:cloudflare
+
+    - name: Deploy to Vercel Edge
+      run: npm run deploy:vercel
+
+    - name: Deploy to Netlify Edge
+      run: npm run deploy:netlify
