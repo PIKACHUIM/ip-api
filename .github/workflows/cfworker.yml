@@ -24,9 +24,3 @@ jobs:
 
     - name: Deploy to Cloudflare Workers
       run: npm run deploy:cloudflare
-
-    - name: Deploy to Vercel Edge
-      run: npm run deploy:vercel
-
-    - name: Deploy to Netlify Edge
-      run: npm run deploy:netlify
